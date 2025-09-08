@@ -3,6 +3,7 @@ package assignments;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -45,11 +46,13 @@ public class Assignment7 {
 		Assert.assertEquals(actualJsPromptAlertText,"I am a JS prompt");
 		alert.sendKeys("selenium");
 		alert.accept();
-		String actualResultText=alert.getText();
+		WebElement resultText=driver.findElement(By.xpath("//p[text()='You entered: selenium']"));
+		String actualResultText=resultText.getText();
 		Assert.assertEquals(actualResultText,"You entered: selenium");
 		Thread.sleep(2000);
 		
-		//System.out.println(alert.getText());
+		System.out.println(resultText.getText());
+		
 	}
 	
 	@AfterMethod
