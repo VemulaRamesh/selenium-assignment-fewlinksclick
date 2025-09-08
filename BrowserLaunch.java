@@ -16,7 +16,7 @@ public class BrowserLaunch {
 		System.out.println("Choose the browser to launch: ");
 		Scanner input=new Scanner(System.in);
 		String browsername=input.next();
-		WebDriver driver;
+		WebDriver driver=null;
 		
 		switch (browsername) {
 		
@@ -33,6 +33,7 @@ public class BrowserLaunch {
 			System.out.println("enter correct browser");
 			
 		}	
+		driver.quit();
 	}
 }
 
