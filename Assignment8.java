@@ -8,31 +8,29 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Assignment3 {
+public class Assignment8 {
 	
 	WebDriver driver;
 	@BeforeMethod
 	public void setUp()
 	{
 		driver=new ChromeDriver();
-		driver.get("https://www.flipkart.com/");
+		driver.get("https://www.salesforce.com/in/");
 		driver.manage().window().maximize();
 	}
 	
 	@Test
-	public void mouseHoverTest()
+	public void shadowDomTest()
 	{
-		Actions action=new Actions(driver);
-		action.moveToElement(driver.findElement(By.xpath("//span[text()='Fashion']")))
-		.perform();
+		//Actions action=new Actions(driver);
+		//action.moveToElement(driver.findElement(By.xpath("//span[text()='Login']")))
+		        //  .pause(2000)
+		        //  .build()
+		        //  .perform();     
 		
-		action.moveToElement(driver.findElement(By.xpath("//a[text()='Women Ethnic']")))
-		.pause(3000)
-//		.click(driver.findElement(By.xpath("//a[text()='Women Sarees']")))
-//		.build()
-		.perform();
 		
-		driver.findElement(By.xpath("//a[text()='Women Sarees']")).click();
+		
+		
 	}
 	
 	@AfterMethod
@@ -40,13 +38,15 @@ public class Assignment3 {
 	{
 		try
 		{
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		}
 		catch(InterruptedException e)
 		{
 			e.printStackTrace();
 		}
+		
 		driver.quit();
+		
 	}
 
 }

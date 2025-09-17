@@ -18,27 +18,31 @@ public class Assignment5 {
 	@BeforeMethod
 	public void setUp()
 	{
-//		Map<String, Object> prefs = new HashMap<String, Object>();
-//		prefs.put("credentials_enable_se rvice", false);
-//		prefs.put("profile.password_ma nager_enabled", false);
-//		prefs.put("profile.password_ma nager_leak_detection", false);
-//		ChromeOptions co = new ChromeOptions();
-//		co.setExperimentalOption("pref s", prefs);
-//		co.addArguments("disable-notifications");
 		
-		driver=new ChromeDriver();
+		  Map<String, Object> prefs = new HashMap<>();
+		  prefs.put("credentials_enable_service", false);
+		  prefs.put("profile.password_manager_enabled", false);
+		  prefs.put("profile.password_manager_leak_detection", false);
+		 
+        ChromeOptions co = new ChromeOptions();
+        co.setExperimentalOption("prefs", prefs);
+        co.addArguments("--disable-notifications");
+		
+		driver=new ChromeDriver(co);
 		driver.get("https://selenium-prd.firebaseapp.com/");
 		driver.manage().window().maximize();
 		
 	}
 	
 	@Test
-	public void doubleClickTest() 
+	public void doubleClickTest() throws InterruptedException 
 	{
 		
 		driver.findElement(By.xpath("//input[@id='email_field']")).sendKeys("admin123@gmail.com");
 		driver.findElement(By.xpath("//input[@id='password_field']")).sendKeys("admin123");
 		driver.findElement(By.xpath("//button[text()='Login to Account']")).click();
+		
+		Thread.sleep(3000);
 		
 		Actions action=new Actions(driver);
 		action.moveToElement(driver.findElement(By.xpath("(//div[@class='dropdown'])[2]")))
