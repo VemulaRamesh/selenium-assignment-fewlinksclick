@@ -1,7 +1,9 @@
 package assignments;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
@@ -22,15 +24,27 @@ public class Assignment8 {
 	@Test
 	public void shadowDomTest()
 	{
-		//Actions action=new Actions(driver);
-		//action.moveToElement(driver.findElement(By.xpath("//span[text()='Login']")))
-		        //  .pause(2000)
-		        //  .build()
-		        //  .perform();     
 		
+		WebElement shadowHost1=driver.findElement(By.cssSelector("hgf-c360nav"));
+		SearchContext shadowRoot1=shadowHost1.getShadowRoot();
+
+		WebElement shadowHost2=shadowRoot1.findElement(By.cssSelector("hgf-c360login[aria-haspopup]"));
+		SearchContext shadowRoot2=shadowHost2.getShadowRoot();
 		
+		WebElement shadowHost3=shadowRoot2.findElement(By.cssSelector("hgf-button[aria-controls='login-unauth-content']"));
+		SearchContext shadowRoot3=shadowHost3.getShadowRoot();
+		WebElement login=shadowRoot3.findElement(By.cssSelector("button"));
 		
-		
+
+		Actions action=new Actions(driver);
+		action.moveToElement(login)
+		          .pause(2000)
+		          .moveToElement(shadowRoot2.findElement(By.cssSelector("a[data-tracking-stable='salesforceLogin']")))
+		          .pause(2000)
+		          .click()
+		          .build()
+		          .perform(); 
+
 	}
 	
 	@AfterMethod

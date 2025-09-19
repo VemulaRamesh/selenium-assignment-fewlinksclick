@@ -1,5 +1,6 @@
 package assignments;
 
+
 import java.util.List;
 import java.util.Set;
 
@@ -62,6 +63,16 @@ public class Assignment6 {
 		for(WebElement allText:allTopTutorials)
 		{
 			System.out.println(allText.getText());
+		}
+		*/
+		
+		/*
+		List<WebElement> allTopTutorials=driver.findElements(By.xpath("//p[text()='Top Tutorials']/ancestor::div[contains(@class,'wp-block-kadence-column')][1]/descendant::span[@class='kt-blocks-info-box-title']"));
+		
+		Iterator<WebElement> it=allTopTutorials.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next().getText());
 		}
 		*/
 		
